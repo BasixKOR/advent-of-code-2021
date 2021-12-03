@@ -3,16 +3,20 @@ defmodule Basix.Advent do
   Documentation for `Basix.Advent`.
   """
 
-  @doc """
-  Hello world.
+  @spec solutions :: %{integer => {(list -> any), (list -> any)}}
+  def solutions do
+    alias Basix.Advent.Solutions
 
-  ## Examples
+    %{
+      # day => { normal, bonus }
+      1 => {&Solutions.Day1.normal/1, &Solutions.Day1.bonus/1}
+    }
+  end
 
-      iex> Basix.Advent.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  @spec run_solution((list -> any), IO.Stream.t()) :: any
+  def run_solution(function, stream) do
+    args = stream |> Enum.map(&Integer.parse/1) |> Enum.to_list() |> IO.inspect()
+    IO.puts(:stderr, args)
+    function.(args)
   end
 end
