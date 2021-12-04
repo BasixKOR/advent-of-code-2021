@@ -2,10 +2,28 @@ defmodule Basix.Advent.Solutions.Day1 do
   @moduledoc """
   https://adventofcode.com/2021/day/1
   """
-  def normal(_input), do: {:todo}
+  def normal(input) do
+    input
+    |> Enum.chunk_every(2, 1)
+    |> Enum.reduce(0, fn
+      [a, b], acc when a < b -> acc + 1
+      _, acc -> acc
+    end)
+    |> IO.puts()
+  end
 
   def bonus(input) do
-    IO.puts input
-    input |> Enum.chunk_every(3, 1) |> Enum.map(&Enum.sum/1) |> Enum.each(&IO.puts/1) |> IO.inspect # Enum.chunk_every(2, 1) |> Enum.reduce(fn [a, b], acc -> if a)
+    input
+    |> Enum.chunk_every(3, 1)
+    |> Enum.map(&Enum.sum/1)
+    |> Enum.chunk_every(2, 1)
+    |> Enum.reduce(0, fn
+      [a, b], acc when a < b ->
+        acc + 1
+
+      _, acc ->
+        acc
+    end)
+    |> IO.puts()
   end
 end
