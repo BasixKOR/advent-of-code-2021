@@ -9,7 +9,8 @@ defmodule Basix.Advent do
 
     %{
       # day => { normal, bonus }
-      1 => {&Solutions.Day1.normal/1, &Solutions.Day1.bonus/1}
+      1 => {&Solutions.Day1.normal/1, &Solutions.Day1.bonus/1},
+      2 => {&Solutions.Day2.normal/1, &Solutions.Day2.bonus/1}
     }
   end
 
