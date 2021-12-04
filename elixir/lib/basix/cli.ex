@@ -44,13 +44,14 @@ defmodule Basix.Advent.CLI do
 
       stream =
         if context[:file] do
-          File.stream!(context.file, "r")
+          File.stream!(context.file)
         else
           IO.stream()
         end
 
       case run_solution(function, stream) do
         {:todo} -> raise ArgumentError, "No solution for day #{day}"
+        _ -> nil
       end
     end
   end
