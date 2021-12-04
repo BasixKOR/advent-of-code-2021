@@ -15,7 +15,7 @@ defmodule Basix.Advent do
 
   @spec run_solution((list -> any), IO.Stream.t()) :: any
   def run_solution(function, stream) do
-    args = stream |> Stream.map(&(Integer.parse(&1) |> elem(0))) |> Enum.into([])
+    args = stream |> Enum.into([])
     function.(args)
   end
 end
